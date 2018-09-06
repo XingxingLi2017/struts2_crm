@@ -7,4 +7,6 @@ import domain.Customer;
 public interface CustomerService {
 	
 	public List<Customer> find();
+
+	public void save(Customer customer);
 }

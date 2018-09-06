@@ -15,5 +15,11 @@ public class CustomerServiceImpl implements CustomerService {
 		return dao.find();
 	}
 
+	@Override
+	public void save(Customer customer) {
+		CustomerDao dao = new CustomerDaoImpl();
+		dao.save(customer);
+	}
+
 
 }

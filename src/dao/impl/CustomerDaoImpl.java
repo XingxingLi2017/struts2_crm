@@ -22,4 +22,14 @@ public class CustomerDaoImpl implements CustomerDao {
 		return list;
 	}
 
+	@Override
+	public void save(Customer customer) {
+		Session session = HibernateUtils.getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		
+		session.save(customer);
+		
+		transaction.commit();
+	}
+
 }
