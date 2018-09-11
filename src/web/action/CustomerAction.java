@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.config.entities.ActionConfig;
 import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 import domain.Customer;
@@ -20,7 +23,13 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
 		
 		CustomerService service = new CustomerServiceImpl();
 		List<Customer> list = service.find();
-		ServletActionContext.getRequest().setAttribute("list", list);
+		System.out.println("list size = " + list.size());
+		System.out.println(list);
+//		ServletActionContext.getRequest().setAttribute("list", list);
+		
+		// store data in ValueStack
+		ActionContext.getContext().getValueStack().set("list", list);
+		
 		return "success";
 	}
 	/*
